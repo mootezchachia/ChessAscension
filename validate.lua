@@ -34,6 +34,10 @@ local modules = {
     {"src/Game/Networking.lua", "Networking"},
     {"src/Game/Abilities/Pawn.lua", "Pawn"},
     {"src/Game/Abilities/Knight.lua", "Knight"},
+    {"src/Game/Abilities/Bishop.lua", "Bishop"},
+    {"src/Game/Abilities/Rook.lua", "Rook"},
+    {"src/Game/Abilities/Queen.lua", "Queen"},
+    {"src/Game/Abilities/King.lua", "King"},
     {"src/Game/UI/MainUI.lua", "MainUI"},
     {"src/Game/UI/AbilityButton.lua", "AbilityButton"},
     {"src/StarterPlayer/PlayerLoader.client.lua", "PlayerLoader"}
@@ -58,7 +62,11 @@ print("│   │   │   ├── MainUI.lua    ✅ Screen UI")
 print("│   │   │   └── AbilityButton.lua ✅ Ability buttons")
 print("│   │   └── Abilities/")
 print("│   │       ├── Pawn.lua      ✅ Pawn abilities")
-print("│   │       └── Knight.lua    ✅ Knight abilities")
+print("│   │       ├── Knight.lua    ✅ Knight abilities")
+print("│   │       ├── Bishop.lua    ✅ Bishop abilities")
+print("│   │       ├── Rook.lua      ✅ Rook abilities")
+print("│   │       ├── Queen.lua     ✅ Queen abilities")
+print("│   │       └── King.lua      ✅ King abilities")
 print("│   └── StarterPlayer/")
 print("│       └── PlayerLoader.client.lua ✅ Player loader")
 print("└── validate.lua              ✅ This script")
