@@ -1,0 +1,18 @@
+{
+  "name": "ChessAscension",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Game": {
+        "$path": "src/Game"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "PlayerLoader": {
+          "$path": "src/StarterPlayer/PlayerLoader.client.lua"
+        }
+      }
+    }
+  }
+}
