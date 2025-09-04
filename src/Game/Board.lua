@@ -125,4 +125,22 @@ function Board:GetEnemiesInRadius(centerTile, radius)
     return enemies
 end
 
+function Board:GetAlliesInRadius(centerPosition, radius)
+    local allies = {}
+    if not centerPosition then return allies end
+    
+    local centerRow, centerCol = centerPosition.row, centerPosition.col
+    
+    for row = math.max(1, centerRow - radius), math.min(self.size, centerRow + radius) do
+        for col = math.max(1, centerCol - radius), math.min(self.size, centerCol + radius) do
+            local tile = self:GetTile(row, col)
+            if tile and tile.occupied then
+                table.insert(allies, tile.occupied)
+            end
+        end
+    end
+    
+    return allies
+end
+
 return Board

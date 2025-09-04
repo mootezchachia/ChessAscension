@@ -25,8 +25,16 @@ wait(1)
 MainUI:Init()
 ShadowBattleUI:Init()
 
--- Show loadout selection first
-ShadowBattleUI:ShowLoadout()
+-- Initialize game controller
+local GameController = require(Game.GameController)
+GameController:Initialize()
+
+-- Start the game automatically (skip loadout for now)
+wait(2)
+GameController:StartGame("PvE")
+
+-- Show battle UI
+ShadowBattleUI:ShowBattle()
 
 -- Set up game state listeners
 if Networking.Remotes.GameState then

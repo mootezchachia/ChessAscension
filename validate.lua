@@ -54,6 +54,8 @@ local modules = {
     {"src/Game/UI/AbilityButton.lua", "AbilityButton", "module"},
     {"src/Game/ShadowSystem.lua", "ShadowSystem", "module"},
     {"src/Game/GameModes.lua", "GameModes", "module"},
+    {"src/Game/BoardRenderer.lua", "BoardRenderer", "module"},
+    {"src/Game/GameController.lua", "GameController", "module"},
     {"src/Game/UI/ShadowBattleUI.lua", "ShadowBattleUI", "module"},
     {"src/Game/Bosses/DungeonBoss.lua", "DungeonBoss", "module"},
     {"src/StarterPlayer/PlayerLoader.client.lua", "PlayerLoader", "client"}
@@ -86,6 +88,8 @@ print("│   │       ├── Queen.lua     ✅ Queen abilities")
 print("│   │       └── King.lua      ✅ King abilities")
 print("│   │   ├── ShadowSystem.lua  ✅ Evolution system")
 print("│   │   ├── GameModes.lua     ✅ PvE/PvP modes")
+print("│   │   ├── BoardRenderer.lua ✅ Visual board system")
+print("│   │   ├── GameController.lua ✅ Game logic controller")
 print("│   │   └── Bosses/")
 print("│   │       └── DungeonBoss.lua ✅ Boss system")
 print("│   └── StarterPlayer/")
