@@ -1,0 +1,400 @@
+📂 Rojo Project Structure
+chess-ascension/
+│
+├── default.project.json      # Rojo config
+├── src/
+│   ├── Game/
+│   │   ├── Board.lua         # Core board logic
+│   │   ├── Networking.lua    # RemoteEvents setup
+│   │   ├── UI/
+│   │   │   ├── MainUI.lua    # Screen UI (buttons, HP bars)
+│   │   │   └── AbilityButton.lua
+│   │   └── Abilities/
+│   │       ├── Pawn.lua
+│   │       ├── Knight.lua
+│   │       ├── Bishop.lua
+│   │       ├── Rook.lua
+│   │       ├── Queen.lua
+│   │       └── King.lua
+│   └── StarterPlayer/
+│       └── PlayerLoader.client.lua   # Loads UI for each player
+
+⚙️ default.project.json
+{
+  "name": "ChessAscension",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Game": {
+        "$path": "src/Game"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "PlayerLoader": {
+          "$path": "src/StarterPlayer/PlayerLoader.client.lua"
+        }
+      }
+    }
+  }
+}
+
+♟️ Example Ability Module – Pawn.lua
+-- src/Game/Abilities/Pawn.lua
+local Pawn = {}
+
+Pawn.Name = "Pawn"
+Pawn.Description = "Rookie soldier that grows stronger with battle."
+
+-- Base stats
+Pawn.Health = 50
+Pawn.Attack = 10
+Pawn.Level = 1
+
+-- Passive: Rookie's Will (gets stronger per kill)
+function Pawn.OnKill(self)
+    self.Attack += 5
+end
+
+-- Active: Charge
+function Pawn.UseAbility(self, targetTile)
+    -- Move 2 tiles forward, deal bonus damage
+    local success = self.Board:MovePiece(self, targetTile, 2)
+    if success and targetTile.Occupied then
+        targetTile.Occupied:TakeDamage(self.Attack * 2)
+    end
+end
+
+return Pawn
+
+🐎 Example Ability Module – Knight.lua
+-- src/Game/Abilities/Knight.lua
+local Knight = {}
+
+Knight.Name = "Knight"
+Knight.Description = "Agile warrior that leaps into battle."
+
+Knight.Health = 100
+Knight.Attack = 20
+Knight.Level = 1
+
+-- Active: Leap Strike (jump + AoE damage)
+function Knight.UseAbility(self, targetTile)
+    local enemies = self.Board:GetEnemiesInRadius(targetTile, 1)
+    for _, enemy in ipairs(enemies) do
+        enemy:TakeDamage(self.Attack)
+    end
+    -- TODO: add particle FX + sound
+end
+
+return Knight
+
+🎛️ Example UI Loader – PlayerLoader.client.lua
+-- src/StarterPlayer/PlayerLoader.client.lua
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Game = ReplicatedStorage:WaitForChild("Game")
+
+-- Load Main UI
+local MainUI = require(Game.UI.MainUI)
+MainUI:Init()
+
+🖥️ Example UI Module – MainUI.lua
+-- src/Game/UI/MainUI.lua
+local MainUI = {}
+
+function MainUI:Init()
+    local player = game.Players.LocalPlayer
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "ChessAscensionUI"
+    screenGui.Parent = player:WaitForChild("PlayerGui")
+
+    -- Ability button
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0, 200, 0, 50)
+    button.Position = UDim2.new(0.4, 0, 0.9, 0)
+    button.Text = "Use Ability"
+    button.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Parent = screenGui
+
+    button.MouseButton1Click:Connect(function()
+        print("Ability triggered!") 
+        -- Hook into Networking later
+    end)
+end
+
+return MainUI
+
+🚀 Next Steps (Weekend MVP Plan)
+
+Start Small: 4x4 board, only Pawn + Knight with 1 ability each.
+
+Networking: Add Networking.lua with RemoteEvents (UseAbility, MovePiece).
+
+UI: Add cooldowns + HP bars above pieces.
+
+FX Hooks: Add TweenService animations + placeholders for Solo Leveling–style particle effects.
+
+Iterate: Add more abilities, progression (XP per piece).
+
+👉 This setup gives you a Rojo-ready, modular game skeleton.
+From here, you can tell Claude/Replit:
+
+“Generate Bishop.lua ability module with healing skill.”
+
+“Add cooldown timer UI to AbilityButton.lua.”
+
+Do you want me to also include a Networking.lua template (RemoteEvents for ability casting + move sync) so you don’t have to wire multiplayer from scratch?
+
+Vous avez dit :
+create the replit prompt and all reuired data and prd
+ChatGPT a dit :
+
+Alright ⚡ let’s make this production-ready package for you:
+
+A PRD (clear plan for your Solo Leveling Chess game).
+
+A Replit AI Super Prompt (so Claude/Replit can generate & maintain the project).
+
+A Rojo project scaffold (files + config).
+
+First-pass abilities, UI, and networking templates.
+
+📄 Product Requirements Document (PRD)
+
+Game Title: Chess Ascension
+Core Concept: Classic chess reimagined with Solo Leveling–style abilities, progression, and flashy ultimates.
+Platform: Roblox
+Development Stack:
+
+Replit (coding + GitHub)
+
+Rojo (sync to Studio)
+
+Roblox Studio (testing, publishing)
+
+🎯 Goals
+
+Fast, flashy matches (5–10 min).
+
+Solo & PvP modes.
+
+Viral TikTok/YouTube moments (crazy ultimates, pawns leveling up into bosses).
+
+Monetization via skins, FX packs, and progression boosts.
+
+🕹️ Gameplay
+
+Chess core rules intact, but each piece has unique abilities.
+
+Abilities include actives (e.g., Queen fires elemental burst) and passives (e.g., Pawn gets stronger after each kill).
+
+Progression → XP per match → level up pieces → unlock stronger skills.
+
+Modes:
+
+Quick Match (4x4 chess, MVP for weekend build).
+
+Ranked (8x8, full ability sets).
+
+Solo Campaign (boss chessboards).
+
+💸 Monetization
+
+Ability skins (fire/ice/shadow ultimates).
+
+Board skins (dungeons, cyber-grid, heavenly arena).
+
+Seasonal battle pass.
+
+XP boosts.
+
+🤖 Replit AI Super Prompt
+
+Paste this into Replit’s AI (Claude Code / Ghostwriter):
+
+You are an expert Roblox + Rojo game developer.
+I want you to build a **Rojo-compatible Roblox project** for "Chess Ascension" (chess + Solo Leveling abilities).
+I am coding in **Replit** and syncing via **Rojo** into Roblox Studio.
+
+### Requirements:
+1. **Rojo Setup**
+   - Provide `default.project.json` mapping:
+     - `src/Game` → `ReplicatedStorage/Game`
+     - `src/StarterPlayer` → `StarterPlayerScripts`
+   - All scripts must be clean Lua modules.
+
+2. **Core Game (MVP)**
+   - Board: 4x4 chess mini-game.
+   - Each piece keeps normal movement rules but has 1 ability.
+     - Example Pawn ability: “Charge” (move 2 tiles forward, stun).
+     - Example Knight ability: “Leap Strike” (jump + AoE).
+   - Ability use should fire RemoteEvents (safe multiplayer).
+
+3. **Abilities**
+   - Place in `src/Game/Abilities/` (one Lua module per piece).
+   - Each ability module must define:
+     - Base stats (HP, Attack, Level).
+     - Passive ability (optional).
+     - Active ability (function with cooldown).
+
+4. **UI**
+   - Modern anime-inspired UI:
+     - Ability button with cooldown timer.
+     - Health bars above pieces.
+     - Floating damage text when ability lands.
+   - Use TweenService for smooth transitions.
+
+5. **Networking**
+   - Add `Networking.lua` to setup RemoteEvents:
+     - `UseAbility`
+     - `MovePiece`
+   - Client scripts call RemoteEvents → server validates.
+
+6. **Architecture**
+   - `Board.lua` → manages chess logic + placement.
+   - `Abilities/*.lua` → per-piece skills.
+   - `UI/*.lua` → ability buttons, HP bars.
+   - `Networking.lua` → RemoteEvents wiring.
+   - `StarterPlayer/PlayerLoader.client.lua` → loads UI and connects to Networking.
+
+7. **Design Polish**
+   - Dark/gradient panels with glowing borders.
+   - Placeholder hooks for particle FX + sounds.
+   - Modular structure for scaling (adding ultimates later).
+
+8. **Deliverables**
+   - Full project folder tree with example code for:
+     - `Pawn.lua`, `Knight.lua` (abilities).
+     - `Board.lua`.
+     - `MainUI.lua` (basic UI).
+     - `Networking.lua` (RemoteEvents setup).
+   - `default.project.json`.
+   - Instructions on running `rojo serve` to test.
+
+📂 Rojo Scaffold (MVP)
+chess-ascension/
+│
+├── default.project.json
+├── src/
+│   ├── Game/
+│   │   ├── Board.lua
+│   │   ├── Networking.lua
+│   │   ├── UI/
+│   │   │   ├── MainUI.lua
+│   │   │   └── AbilityButton.lua
+│   │   └── Abilities/
+│   │       ├── Pawn.lua
+│   │       └── Knight.lua
+│   └── StarterPlayer/
+│       └── PlayerLoader.client.lua
+
+⚙️ Example Files
+default.project.json
+{
+  "name": "ChessAscension",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Game": { "$path": "src/Game" }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "PlayerLoader": {
+          "$path": "src/StarterPlayer/PlayerLoader.client.lua"
+        }
+      }
+    }
+  }
+}
+
+Pawn.lua
+local Pawn = {}
+Pawn.Name = "Pawn"
+Pawn.Health = 50
+Pawn.Attack = 10
+Pawn.Cooldown = 5
+
+function Pawn.OnKill(self)
+    self.Attack += 5 -- grows stronger after kills
+end
+
+function Pawn.UseAbility(self, targetTile)
+    local success = self.Board:MovePiece(self, targetTile, 2)
+    if success and targetTile.Occupied then
+        targetTile.Occupied:TakeDamage(self.Attack * 2)
+    end
+end
+
+return Pawn
+
+Networking.lua
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Networking = {}
+Networking.Remotes = {}
+
+function Networking:Init()
+    local folder = Instance.new("Folder")
+    folder.Name = "Remotes"
+    folder.Parent = ReplicatedStorage
+
+    self.Remotes.UseAbility = Instance.new("RemoteEvent")
+    self.Remotes.UseAbility.Name = "UseAbility"
+    self.Remotes.UseAbility.Parent = folder
+
+    self.Remotes.MovePiece = Instance.new("RemoteEvent")
+    self.Remotes.MovePiece.Name = "MovePiece"
+    self.Remotes.MovePiece.Parent = folder
+end
+
+return Networking
+
+MainUI.lua
+local MainUI = {}
+local TweenService = game:GetService("TweenService")
+
+function MainUI:Init()
+    local player = game.Players.LocalPlayer
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "ChessAscensionUI"
+    gui.Parent = player:WaitForChild("PlayerGui")
+
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0, 200, 0, 50)
+    button.Position = UDim2.new(0.4, 0, 0.9, 0)
+    button.Text = "Use Ability"
+    button.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Parent = gui
+
+    button.MouseButton1Click:Connect(function()
+        print("Ability triggered!") -- hook into Networking
+    end)
+
+    -- Cooldown effect
+    button.MouseEnter:Connect(function()
+        TweenService:Create(button, TweenInfo.new(0.3),
+            {BackgroundColor3 = Color3.fromRGB(70, 70, 120)}):Play()
+    end)
+    button.MouseLeave:Connect(function()
+        TweenService:Create(button, TweenInfo.new(0.3),
+            {BackgroundColor3 = Color3.fromRGB(40, 40, 60)}):Play()
+    end)
+end
+
+return MainUI
+
+🚀 MVP Weekend Plan
+
+Get Pawn + Knight abilities working.
+
+Build UI buttons + health bars.
+
+Wire Networking (RemoteEvents for multiplayer).
+
+Test 1v1 Quick Match in Studio.
+
+Expand with more pieces, ultimates, and Solo Leveling XP.
