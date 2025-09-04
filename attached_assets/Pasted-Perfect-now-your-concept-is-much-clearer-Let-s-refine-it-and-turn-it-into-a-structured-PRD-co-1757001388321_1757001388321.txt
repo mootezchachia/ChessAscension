@@ -1,0 +1,163 @@
+Perfect — now your concept is much clearer. Let’s refine it and turn it into a **structured PRD + core design plan** so you can start building immediately. I’ll also suggest **game loops, progression, and multiplayer modes** based on your ShadowGarden Battle Royale idea.
+
+---
+
+# 📝 Game Concept: **ShadowGarden Battle Royale**
+
+**Genre:** RPG + Strategy + Chess Mechanics
+**Core Hook:** Players control “shadow pieces” (pawns, knights, etc.) with **Solo Leveling–style progression**, battling **boss kings/dungeons or other players**. Shadows evolve, gain new abilities, and can be strategically swapped each round.
+
+---
+
+## 1. Core Gameplay Loop
+
+1. **Select Shadows**
+
+   * Players choose 3–6 shadow pieces to bring into a match.
+   * Each shadow has unique abilities, stats, and a level.
+   * Shadows can be **leveled up, evolved, and equipped with abilities**.
+
+2. **Battle Mode**
+
+   * **Dungeon PvE:** Fight a boss king controlling pawns/dungeon minions.
+   * **PvP:** Fight against other players’ shadow teams.
+   * Match mechanics are **chess-like**: each piece moves according to rules (or specialized variant), but **abilities are active skills** that can be used strategically.
+
+3. **Rewards & Progression**
+
+   * Win battles → gain XP, new shadows, or evolve existing ones.
+   * Shadows can **evolve into stronger forms** or **unlock new abilities**.
+   * Unlockable items/skins for your shadows.
+
+4. **Strategic Loadout**
+
+   * Players can **swap shadows** before each battle.
+   * Abilities can be chosen before match → allows tactical depth.
+
+---
+
+## 2. Modes
+
+### PvE – Dungeon Battles
+
+* Each dungeon is controlled by a **boss king**, which spawns minion pawns.
+* Bosses have unique abilities (fire traps, AoE attacks, shadow clones).
+* Winning unlocks:
+
+  * XP for shadows
+  * Evolution items
+  * New shadow pieces
+
+### PvP – Shadow Arena
+
+* 1v1 or small team battles
+* Players bring a selection of shadows
+* Chess-like grid, with abilities active each turn
+* Optional team co-op vs dungeon bosses
+
+---
+
+## 3. Shadows & Abilities
+
+**Shadow Attributes**
+
+* Health
+* Attack / Defense
+* Level / XP
+* Special ability (active)
+* Passive ability
+
+**Example Shadow**
+
+* **Shadow Pawn:** Evolves into Shadow Soldier → gains “Charge” ability (stun enemy)
+* **Shadow Knight:** Evolves into Phantom Cavalry → gains “Leap Strike” (AoE jump)
+* **Shadow Bishop:** Evolves into Lightborne Bishop → heals allies in range
+
+Abilities are **modular** so new shadows or bosses can be added without rewriting core code.
+
+---
+
+## 4. Progression & RPG Loop
+
+* **Leveling:** Shadows gain XP each match → evolve → unlock new abilities.
+* **Loadout Management:** Players equip shadows and select abilities before each match.
+* **Rewards:** Cosmetics, XP boosters, rare shadows.
+
+---
+
+## 5. Multiplayer / Social Loops
+
+* **Solo Dungeon PvE:** Fight AI bosses → farm XP → evolve shadows.
+* **PvP Arena:**
+
+  * Ranked & casual matches
+  * Player vs Player shows off powerful evolved shadows → viral clips
+* **Co-op PvE:** 2–4 players team up against boss king → collaborative strategy
+
+---
+
+## 6. Monetization Strategy
+
+1. **Cosmetic Skins** → glowing shadows, special effects for evolved forms
+2. **Ability Boosts** → temporary power-ups (speed boost, extra damage)
+3. **Shadow Packs** → unlock rare shadows or abilities
+4. **VIP Battle Pass** → exclusive bosses, skins, and seasonal evolutions
+
+---
+
+## 7. MVP Weekend Build Plan
+
+**Goal:** Get a playable prototype in 1–2 days
+
+* **Board:** Mini 4x4 chess-like grid
+* **Shadows:** 2–3 shadows with 1 active ability each
+* **Dungeon Boss:** 1 mini boss with basic AI + minions
+* **UI:** Health bars, ability buttons, cooldowns
+* **Progression:** XP system for shadows
+* **Multiplayer:** 1v1 or co-op vs boss (basic networked events)
+
+---
+
+## 8. Rojo + Replit Setup
+
+**Folder Structure:**
+
+```
+ShadowGardenBR/
+│
+├── default.project.json
+├── src/
+│   ├── Game/
+│   │   ├── Board.lua
+│   │   ├── Networking.lua
+│   │   ├── Shadows/
+│   │   │   ├── ShadowPawn.lua
+│   │   │   └── ShadowKnight.lua
+│   │   ├── Bosses/
+│   │   │   └── FireKing.lua
+│   │   └── UI/
+│   │       ├── MainUI.lua
+│   │       └── AbilityButton.lua
+│   └── StarterPlayer/
+│       └── PlayerLoader.client.lua
+```
+
+**Key Notes:**
+
+* Use **RemoteEvents** for ability casts & movement.
+* Modular Shadow scripts → easy to add new shadows/bosses.
+* UI supports ability selection & cooldowns.
+
+---
+
+💡 **Viral Potential:**
+
+* Chess + RPG = unique → stands out on Roblox.
+* Evolution + flashy ultimates = TikTok/YouTube ready clips.
+* PvE + PvP combo → appeals to both solo & social players.
+
+---
+
+I can also create a **full Replit prompt** for Claude/ChatGPT that will **auto-generate this project with sample shadows, boss, UI, and Rojo-compatible structure** so you can start coding immediately.
+
+Do you want me to do that next?

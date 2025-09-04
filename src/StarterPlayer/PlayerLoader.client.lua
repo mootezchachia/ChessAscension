@@ -10,6 +10,7 @@ local Game = ReplicatedStorage:WaitForChild("Game")
 
 -- Load main modules
 local MainUI = require(Game.UI.MainUI)
+local ShadowBattleUI = require(Game.UI.ShadowBattleUI)
 local Networking = require(Game.Networking)
 
 print("Chess Ascension - Player Loading...")
@@ -20,8 +21,12 @@ Networking:Init()
 -- Wait a moment for everything to load
 wait(1)
 
--- Initialize UI
+-- Initialize UIs
 MainUI:Init()
+ShadowBattleUI:Init()
+
+-- Show loadout selection first
+ShadowBattleUI:ShowLoadout()
 
 -- Set up game state listeners
 if Networking.Remotes.GameState then
